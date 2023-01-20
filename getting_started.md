@@ -27,6 +27,17 @@ Now, you can simply open the `res/` folder with your editor. If you have set up 
 autocompletion will work, not only with the content of your mod and OSPGL libraries, but also with other mods 
 that you have installed.
 
+If you want for `dofile` to be autocompleted, **which is highly recommended**, you need to do the following (instructions for VS Code):
+
+- Go to File->Preferences->Settings 
+- Optionally, switch to "Workspace" mode so the setting isn't globally applied
+- Search for `sumneko`
+- In Lua > Runtime: Plugin, write the absolute path to `res/.luadef/plugin.lua`
+
+For other editors, check [https://github.com/sumneko/lua-language-server/wiki/Plugins](https://github.com/sumneko/lua-language-server/wiki/Plugins), note that you
+don't need to do the `--develop=true` step.
+
+
 ## Creating your first package
 
 
