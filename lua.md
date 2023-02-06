@@ -27,8 +27,8 @@ Dofile is to be used when the file being loaded represents a class or some kind 
 ammount of boiler-plate code that has to be written (to instance classes), and also may improve perfomance ever so slightly as it avoids the 
 use of metatable `__index` method that would otherwise have to be used.
 
-In `core`, scripts that are to be included using `dofile` are clearly marked with the prefix `c_`, which stands for `class`. The game engine
-will emit a warning if you `require` a file which begins with `c_`, as these will behave strangely if used this way.
+In `core`, scripts that are to be included using `dofile` are clearly marked with the prefix `l_` or `c_`, which stands for `local` and `class` respectively. The game engine
+will emit a warning if you `require` a file which begins with `c_` or `l_`, as these will behave strangely if used this way.
 
 #### When to use require
 
