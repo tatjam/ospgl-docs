@@ -3,6 +3,12 @@
 OSPGL uses LuaJIT with Lua 5.2 compatibility enabled. The standard library is limited to "safe" functions, and some changes have been applied to some of them. 
 Lets go over what's changed from "stock" lua.
 
+## Environments
+
+The OSPGL engine will always spawn scripts in their own environment, so globals can be used. This allows, for example, many machines having the `update` method as a global, while no name conflicts arise. Despite this, all environments are actually running in the same lua state, so you can freely pass variables between machines, scenes, etc...
+
+Once you begin including scripts, the situation can get confusing, but the behaviour is simple: `require` scripts run on a "global" environment, while `dofile` scripts run in the same environment as the caller. See below for more info.
+
 ## Require / Loadfile / Dofile
 
 These funtions have been replaced with implementations that allow using OSPGL style asset paths. For example, to include a lua file `g_effect_manager.lua` 
@@ -44,3 +50,7 @@ In `core`, scripts that are to be included **ONLY using** `require` are clearly 
 will emit a warning if you `dofile / loadfile` a file which begins with `g_`, as it may not have intended behavior. 
 
 Note that scripts without any prefix are either not meant to be included, or don't care which method you use.
+
+#### Environment of included scripts
+- If you use `require`, the script will be run in the global environment. For normal use, this means that the only global available is `osp` and you have no access to any of the globals of the script you are included from. Of course, on a planet generation script you will not have access to `osp` and so on.
+- If you use `dofile`, the script is on the same environment as the calling script, and may access **global** variables defined in said environment and similar. Abusing this behaviour to pass data is discouraged as it can result in very confusing code, but if you are simply breaking down a file into components, this may be of great utility.
