@@ -4,3 +4,4 @@ Welcome to the OSPGL documentation repo. You can also go to the [engine repo](ht
 
 - [Getting Started](getting_started.md)
 - [OSPGL Lua](lua.md)
+- [Event handling](events.md)
